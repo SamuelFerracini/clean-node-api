@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "git@github.com:SamuelFerracini/clean-node-api.git",
   "author": "Samuel Ferracini <samferracini@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "git-commit-msg-linter": "^3.2.6"
+  }
 }
