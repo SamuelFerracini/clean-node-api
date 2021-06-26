@@ -1,9 +1,11 @@
-import { HttpRequest, HttpResponse } from '../protocols/http'
-import { EmailValidator } from '../protocols/emailValidator'
-import { Controller } from '../protocols/controller'
+import {
+  EmailValidator,
+  Controller,
+  HttpRequest,
+  HttpResponse
+} from '../protocols'
 
-import { InvalidParamError } from '../errors/invalidParamError'
-import { MissinParamError } from '../errors/missingParamError'
+import { InvalidParamError, MissinParamError } from '../errors'
 
 import { badRequest, serverError } from '../helpers/http'
 

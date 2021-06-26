@@ -1,14 +1,12 @@
+import { MissinParamError, InvalidParamError, ServerError } from '../errors'
+
 import { SignUpController } from './signup'
 
-import { MissinParamError } from '../errors/missingParamError'
-import { InvalidParamError } from '../errors/invalidParamError'
-import { ServerError } from '../errors/serverError'
-
-import { EmailValidator } from '../protocols/emailValidator'
+import { EmailValidator } from '../protocols'
 
 interface SutTypes {
-  sut: SignUpController
   emailValidatorStub: EmailValidator
+  sut: SignUpController
 }
 
 const makeSut = (): SutTypes => {
