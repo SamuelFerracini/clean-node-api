@@ -8,7 +8,7 @@ import {
 
 import { InvalidParamError, MissinParamError } from '../../errors'
 
-import { badRequest, serverError } from '../../helpers/http'
+import { badRequest, serverError, ok } from '../../helpers/http'
 
 export class SignUpController implements Controller {
   constructor(
@@ -40,10 +40,7 @@ export class SignUpController implements Controller {
 
       const account = this.addAccount.add({ name, email, password })
 
-      return {
-        statusCode: 200,
-        body: account
-      }
+      return ok(account)
     } catch {
       return serverError()
     }
