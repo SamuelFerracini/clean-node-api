@@ -5,11 +5,11 @@ import { MissinParamError } from '../errors/missingParamError'
 import { badRequest } from '../helpers/http'
 export class SignUpController {
   handle(httpRequest: HttpRequest): HttpResponse {
+    const requiredFields = ['name', 'email']
+
     const { body } = httpRequest
-    const { name, email } = body
 
-    if (!name) return badRequest(new MissinParamError('name'))
-
-    if (!email) return badRequest(new MissinParamError('email'))
+    for (const field of requiredFields)
+      if (!body[field]) return badRequest(new MissinParamError(field))
   }
 }
