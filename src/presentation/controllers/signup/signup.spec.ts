@@ -18,11 +18,13 @@ interface SutTypes {
 const makeAddAccount = (): AddAccount => {
   class AddAccountStub implements AddAccount {
     add(account: AddAccountModel): AccountModel {
+      const { name, email, password } = account
+
       const fakeAccount = {
         id: 'validId',
-        name: 'validName',
-        email: 'validEmail@mail.com',
-        password: 'validPassword'
+        name,
+        email,
+        password
       }
 
       return fakeAccount
@@ -250,5 +252,28 @@ describe('SignUp Controller', () => {
 
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new ServerError())
+  })
+
+  test('Should return 200 if valid data is provided', () => {
+    const { sut } = makeSut()
+
+    const httpRequest = {
+      body: {
+        name: 'validName',
+        email: 'validEmail@validEmail.com',
+        password: 'validPass',
+        passwordConfirmation: 'validPass'
+      }
+    }
+
+    const httpResponse = sut.handle(httpRequest)
+
+    expect(httpResponse.statusCode).toBe(200)
+    expect(httpResponse.body).toEqual({
+      id: 'validId',
+      name: 'validName',
+      email: 'validEmail@validEmail.com',
+      password: 'validPass'
+    })
   })
 })
