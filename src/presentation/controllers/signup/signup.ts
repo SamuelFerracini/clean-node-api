@@ -1,14 +1,14 @@
 import {
   EmailValidator,
-  Controller,
+  HttpResponse,
   HttpRequest,
-  HttpResponse
-} from '../protocols'
+  Controller,
+  AddAccount
+} from './signupProtocols'
 
-import { InvalidParamError, MissinParamError } from '../errors'
+import { InvalidParamError, MissinParamError } from '../../errors'
 
-import { badRequest, serverError } from '../helpers/http'
-import { AddAccount } from '../../domain/useCases'
+import { badRequest, serverError } from '../../helpers/http'
 
 export class SignUpController implements Controller {
   constructor(
