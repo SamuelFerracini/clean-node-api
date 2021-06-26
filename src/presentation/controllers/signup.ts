@@ -8,9 +8,13 @@ import {
 import { InvalidParamError, MissinParamError } from '../errors'
 
 import { badRequest, serverError } from '../helpers/http'
+import { AddAccount } from '../../domain/useCases'
 
 export class SignUpController implements Controller {
-  constructor(private readonly emailValidator: EmailValidator) {}
+  constructor(
+    private readonly emailValidator: EmailValidator,
+    private readonly addAccount: AddAccount
+  ) {}
 
   handle(httpRequest: HttpRequest): HttpResponse {
     try {
@@ -23,7 +27,7 @@ export class SignUpController implements Controller {
 
       const { body } = httpRequest
 
-      const { email, password, passwordConfirmation } = body
+      const { name, email, password, passwordConfirmation } = body
 
       for (const field of requiredFields)
         if (!body[field]) return badRequest(new MissinParamError(field))
@@ -33,6 +37,8 @@ export class SignUpController implements Controller {
 
       if (!this.emailValidator.isValid(email))
         return badRequest(new InvalidParamError('email'))
+
+      this.addAccount.add({ name, email, password })
     } catch {
       return serverError()
     }
