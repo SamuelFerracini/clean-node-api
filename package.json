@@ -6,6 +6,7 @@
   "author": "Samuel Ferracini <samferracini@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^26.0.23",
     "@types/node": "^15.12.4",
     "@typescript-eslint/eslint-plugin": "4",
     "eslint": "7",
@@ -15,7 +16,12 @@
     "eslint-plugin-promise": "4",
     "git-commit-msg-linter": "^3.2.6",
     "husky": "^6.0.0",
+    "jest": "^27.0.5",
     "lint-staged": "^11.0.0",
+    "ts-jest": "^27.0.3",
     "typescript": "^4.3.4"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }
